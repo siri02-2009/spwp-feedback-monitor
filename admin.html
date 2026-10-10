@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Admin Login - Sri Padmavathi Women's Polytechnic
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =========================
+           MAIN BACKGROUND
+        ========================== */
+
+        body {
+
+            height: 100vh;
+
+            overflow: hidden;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            position: relative;
+
+            background: linear-gradient(
+                135deg,
+                #e3f2ff,
+                #b9dcff,
+                #8fc7ff
+            );
+        }
+
+
+        /* =========================
+           BLUE WAVE 1
+        ========================== */
+
+        body::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 120%;
+
+            height: 300px;
+
+            left: -10%;
+
+            bottom: -130px;
+
+            background: rgba(30, 120, 220, 0.40);
+
+            border-radius: 50% 50% 0 0;
+
+            transform: rotate(-3deg);
+
+            z-index: 0;
+        }
+
+
+        /* =========================
+           BLUE WAVE 2
+        ========================== */
+
+        body::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 120%;
+
+            height: 240px;
+
+            left: -10%;
+
+            bottom: -150px;
+
+            background: rgba(70, 160, 240, 0.45);
+
+            border-radius: 50% 50% 0 0;
+
+            transform: rotate(3deg);
+
+            z-index: 0;
+        }
+
+
+        /* =========================
+           LOGIN BOX
+        ========================== */
+
+        .login-box {
+
+            width: 420px;
+
+            padding: 35px;
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.90
+            );
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 35px
+                rgba(0, 80, 160, 0.25);
+
+            text-align: center;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =========================
+           ADMIN EMOJI
+        ========================== */
+
+        .admin-icon {
+
+            font-size: 55px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           HEADING
+        ========================== */
+
+        h1 {
+
+            color: #0759a8;
+
+            margin-bottom: 8px;
+
+            font-size: 30px;
+        }
+
+
+        .college-name {
+
+            color: #555;
+
+            font-size: 14px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           INPUT FIELDS
+        ========================== */
+
+        input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            margin: 10px 0;
+
+            border: 1px solid #9bc9f5;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            background: #f8fcff;
+        }
+
+
+        input:focus {
+
+            border-color: #1683df;
+
+            box-shadow:
+                0 0 7px
+                rgba(22, 131, 223, 0.35);
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================== */
+
+        .login-btn {
+
+            width: 100%;
+
+            padding: 13px;
+
+            margin-top: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                135deg,
+                #087bea,
+                #0645c9
+            );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .login-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 6px 15px
+                rgba(0, 80, 180, 0.30);
+        }
+
+
+        /* =========================
+           ERROR MESSAGE
+        ========================== */
+
+        #error {
+
+            color: red;
+
+            font-size: 14px;
+
+            margin-top: 12px;
+        }
+
+
+        /* =========================
+           BACK TO HOME
+        ========================== */
+
+        .back-btn {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            text-decoration: none;
+
+            color: #0759a8;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        .back-btn:hover {
+
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         ADMIN LOGIN BOX
+    ========================== -->
+
+    <div class="login-box">
+
+
+        <!-- ADMIN ICON -->
+
+        <div class="admin-icon">
+            🧑‍💼
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1>
+            Admin Login
+        </h1>
+
+
+        <!-- COLLEGE NAME -->
+
+        <p class="college-name">
+            Sri Padmavathi Women's Polytechnic
+        </p>
+
+
+        <!-- LOGIN FORM -->
+
+        <form onsubmit="loginAdmin(event)">
+
+            <!-- ADMIN ID -->
+
+            <input
+                type="text"
+                id="adminId"
+                placeholder="Enter Admin ID"
+                required
+            >
+
+
+            <!-- PASSWORD -->
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+                required
+            >
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="login-btn"
+            >
+                Login →
+            </button>
+
+
+            <!-- ERROR -->
+
+            <p id="error"></p>
+
+
+        </form>
+
+
+        <!-- BACK BUTTON -->
+
+        <a
+            href="index.html"
+            class="back-btn"
+        >
+            ← Back to Home
+        </a>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+   <script>
+function loginAdmin(event) {
+
+    event.preventDefault();
+
+    const adminId = document.getElementById('adminId').value.trim();
+    const password = document.getElementById('password').value;
+    const error = document.getElementById('error');
+
+    error.textContent = "";
+
+    if (!adminId || !password) {
+        error.textContent = "Please enter both Admin ID and Password.";
+        return;
+    }
+
+    fetch("/api/admin-login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: adminId,
+            password: password
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        if (data.status === "success") {
+
+            window.location.href = data.redirect;
+
+        } else {
+
+            error.textContent = "Login Failed: " + data.message;
+
+        }
+
+    })
+    .catch(error => {
+
+        console.error("Error:", error);
+
+        document.getElementById('error').textContent =
+            "Could not connect to server. Please make sure Flask is running.";
+
+    });
+}
+</script>
+</body>
+
+</html>
+

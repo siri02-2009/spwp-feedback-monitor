@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4efff;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6a0dad, #4169e1);
+            color: white;
+            padding: 22px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 30px;
+        }
+
+        .logout-btn {
+            background: white;
+            color: #6a0dad;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .welcome h2 {
+            color: #333;
+            font-size: 28px;
+        }
+
+        .college-name {
+            color: #6a0dad;
+            font-size: 28px;
+            font-weight: 900;
+            margin-top: 10px;
+        }
+
+        .dashboard {
+            width: 90%;
+            max-width: 1100px;
+            margin: 10px auto 40px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+        }
+
+        .card-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #6a0dad;
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            background: #6a0dad;
+            color: white;
+            padding: 15px;
+        }
+
+        @media (max-width: 800px) {
+            .dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 18px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h1>Admin Dashboard</h1>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+
+    <div class="welcome">
+
+        <h2>Welcome, Admin! 🛠️</h2>
+
+        <p class="college-name">
+            Sri Padmavathi Women's Polytechnic
+        </p>
+
+    </div>
+
+
+    <div class="dashboard">
+
+
+        <div class="card" onclick="openFeedback()">
+            <div class="card-icon">💬</div>
+            <h3>View Feedback</h3>
+            <p>View and respond to student and parent feedback</p>
+        </div>
+
+
+        <div class="card" onclick="window.location.href='admin-notices.html'">
+            <div class="card-icon">📢</div>
+            <h3>Manage Notices</h3>
+            <p>Add,edit and delete college notices</p>
+        </div>
+    </div>
+
+
+    <footer>
+        © 2026 Sri Padmavathi Women's Polytechnic
+    </footer>
+
+
+    <script>
+
+        function openFeedback() {
+            window.location.href = "admin-feedback.html";
+        }
+
+        function openNotices() {
+            window.location.href = "notices.html?from=admin";
+        }
+function logout() {
+    window.location.href = "/admin-logout";
+}
+               }
+
+    </script>
+
+</body>
+
+</html>

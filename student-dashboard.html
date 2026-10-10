@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #eef6ff;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #087bea, #0645c9);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+        }
+
+        .header p {
+            margin-top: 8px;
+            font-size: 16px;
+        }
+
+        /* Logout Button */
+        .logout {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            padding: 10px 20px;
+            background: white;
+            color: #0645c9;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            background: #dceeff;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            width: 90%;
+            max-width: 1100px;
+            margin: 45px auto;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            color: #0645c9;
+            font-size: 26px;
+        }
+
+        .welcome p {
+            margin-top: 8px;
+            color: #555;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .icon {
+    font-size: 45px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    line-height: 1;
+}
+        .card h3 {
+            color: #0645c9;
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        /* Mobile */
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .logout {
+                position: static;
+                display: inline-block;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+
+        <h1>Student Dashboard</h1>
+
+        <p>Sri Padmavathi Women's Polytechnic</p>
+
+        <a href="student.html" class="logout" onclick="logout()">
+            Logout
+        </a>
+
+    </div>
+
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+
+        <div class="welcome">
+            <h2 id="welcomeName">Welcome Student 👋</h2>
+            <p>Access your academic information and college services</p>
+        </div>
+
+
+        <div class="cards">
+
+            <!-- Profile -->
+            <div class="card" onclick="openProfile()">
+                <div class="icon">👤</div>
+                <h3>Profile</h3>
+                <p>View your personal details</p>
+            </div>
+
+ <!-- Notices -->
+        <div class="card" onclick="openNotices()">
+            <div class="icon">📢</div>
+            <h3>Notices</h3>
+            <p>View latest college notices</p>
+        </div>
+       
+            
+            <!-- Feedback -->
+            <div class="card" onclick="openFeedback()">
+                <div class="icon">⭐</div>
+                <h3>Feedback</h3>
+                <p>Submit your anonymous feedback</p>
+            </div>
+
+
+                             
+
+       <script>
+
+        /* Display student name */
+        const studentData =
+            JSON.parse(localStorage.getItem("studentData"));
+
+        if (studentData && studentData.name) {
+
+            document.getElementById("welcomeName").textContent =
+                "Welcome " + studentData.name + " 👋";
+
+        }
+
+
+        /* Navigation Functions */
+
+        function openProfile() {
+            window.location.href = "student-profile.html";
+        }
+
+        function openAttendance() {
+            window.location.href = "attendance.html";
+        }
+
+        function openMarks() {
+            window.location.href = "marks.html";
+        }
+
+       function openNotices() {
+        window.location.href = "notices.html?from=parent";
+    }
+
+        function openTimetable() {
+            window.location.href = "timetable.html";
+        }
+
+        function openFeedback() {
+            window.location.href = "feedback.html";
+        }
+
+        function contactCollege() {
+            alert(
+                "For any queries, please contact Sri Padmavathi Women's Polytechnic."
+            );
+        }
+
+
+        /* Logout */
+
+        function logout() {
+
+            localStorage.removeItem("studentData");
+
+            window.location.href = "student.html";
+        }
+
+    </script>
+
+</body>
+</html>
+

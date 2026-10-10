@@ -1,0 +1,742 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Feedback</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: #eef6ff;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #087bea, #0645c9);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: Georgia, serif;
+        }
+
+        .back-btn {
+            background: white;
+            color: #0645a5;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: #dceeff;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        .title {
+            text-align: center;
+            color: #6A0DAD;
+            margin-bottom: 25px;
+        }
+
+        /* FEEDBACK CARD */
+        .feedback-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 70, 180, 0.15);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #0645a5;
+            font-weight: bold;
+        }
+
+        /* FEEDBACK FOR */
+        .feedback-for {
+            margin-bottom: 25px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            margin-top: 12px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #333;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .radio-option input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* SELECT AND TEXTAREA */
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* STAR RATING */
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 40px;
+            color: #ccc;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: #FFD700;
+        }
+
+        .rating input:checked ~ label {
+            color: #FFD700;
+        }
+
+        /* AUTOMATIC FEEDBACK */
+        .auto-feedback {
+            background: #f5f0ff;
+            border-left: 5px solid #6A0DAD;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: #52098a;
+            font-weight: bold;
+        }
+
+        .auto-feedback span {
+            font-weight: normal;
+            color: #333;
+        }
+
+        /* SUBMITTED FEEDBACK CARD */
+        .submitted-feedback {
+            display: none;
+            margin-top: 28px;
+            background: #f9fcff;
+            border-left: 6px solid #087bea;
+            border-radius: 22px;
+            padding: 26px;
+            box-shadow: 0 8px 25px rgba(0, 70, 180, 0.15);
+        }
+
+        .submitted-feedback h3 {
+            color: #0758ad;
+            margin-bottom: 18px;
+            font-size: 21px;
+        }
+
+        .submitted-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .submitted-user {
+            color: #0758ad;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .submitted-badge {
+            background: #dceeff;
+            color: #0758ad;
+            border-radius: 18px;
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .submitted-details {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .submitted-detail {
+            background: #f1f7ff;
+            border: 1px solid #d1e5ff;
+            border-radius: 13px;
+            padding: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .submitted-detail span {
+            display: block;
+            color: #777;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .submitted-detail strong {
+            color: #0758ad;
+        }
+
+        .submitted-stars {
+            color: #0785ed;
+            letter-spacing: 2px;
+            font-size: 20px;
+        }
+
+        .submitted-section {
+            margin-top: 16px;
+        }
+
+        .submitted-section h4 {
+            color: #0758ad;
+            margin-bottom: 9px;
+        }
+
+        .submitted-text {
+            background: #f3f8ff;
+            border: 1px solid #d1e5ff;
+            border-radius: 13px;
+            padding: 15px;
+            color: #444;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .submitted-status {
+            margin-top: 16px;
+            color: #187344;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* SUBMIT BUTTON */
+        .submit-btn {
+            display: block;
+            margin: auto;
+            background: #6A0DAD;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #52098a;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 18px;
+                gap: 12px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .container {
+                margin: 25px auto;
+            }
+
+            .feedback-card {
+                padding: 20px;
+            }
+
+            .submitted-feedback {
+                padding: 18px;
+            }
+
+            .submitted-details {
+                grid-template-columns: 1fr;
+            }
+
+            .submitted-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1 id="feedbackTitle">Feedback</h1>
+
+        <button type="button" class="back-btn" onclick="goBack()">
+            Back
+        </button>
+    </div>
+
+    <!-- MAIN -->
+    <div class="container">
+
+        <h2 class="title" id="formTitle">Give Your Feedback</h2>
+
+        <div class="feedback-card">
+
+            <form id="feedbackForm" onsubmit="submitFeedback(event)">
+
+                <!-- FEEDBACK FOR -->
+                <div class="feedback-for">
+                    <label>Feedback For</label>
+
+                    <div class="radio-group">
+
+                        <label class="radio-option">
+                            <input
+                                type="radio"
+                                name="feedbackFor"
+                                value="College"
+                                onchange="changeCategory()"
+                                required
+                            >
+                            College
+                        </label>
+
+                        <label class="radio-option">
+                            <input
+                                type="radio"
+                                name="feedbackFor"
+                                value="Hostel"
+                                onchange="changeCategory()"
+                            >
+                            Hostel
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- CATEGORY -->
+                <label for="category">Feedback Category</label>
+
+                <select id="category" required>
+                    <option value="">Select Feedback For First</option>
+                </select>
+
+                <!-- RATING -->
+                <label>Rate Your Experience</label>
+
+                <div class="rating">
+
+                    <input
+                        type="radio"
+                        id="star5"
+                        name="rating"
+                        value="5"
+                        onclick="showFeedback(5)"
+                        required
+                    >
+                    <label for="star5">★</label>
+
+                    <input
+                        type="radio"
+                        id="star4"
+                        name="rating"
+                        value="4"
+                        onclick="showFeedback(4)"
+                    >
+                    <label for="star4">★</label>
+
+                    <input
+                        type="radio"
+                        id="star3"
+                        name="rating"
+                        value="3"
+                        onclick="showFeedback(3)"
+                    >
+                    <label for="star3">★</label>
+
+                    <input
+                        type="radio"
+                        id="star2"
+                        name="rating"
+                        value="2"
+                        onclick="showFeedback(2)"
+                    >
+                    <label for="star2">★</label>
+
+                    <input
+                        type="radio"
+                        id="star1"
+                        name="rating"
+                        value="1"
+                        onclick="showFeedback(1)"
+                    >
+                    <label for="star1">★</label>
+
+                </div>
+
+                <!-- AUTOMATIC FEEDBACK -->
+                <div class="auto-feedback">
+                    Feedback:
+                    <span id="autoFeedback">
+                        Select a rating to see feedback
+                    </span>
+                </div>
+
+                <!-- ADDITIONAL FEEDBACK -->
+                <label for="message">Additional Feedback</label>
+
+                <textarea
+                    id="message"
+                    placeholder="Write your additional comments here..."
+                    required
+                ></textarea>
+
+                <!-- SUBMIT -->
+                <button type="submit" class="submit-btn">
+                    Submit Feedback
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- SUBMITTED FEEDBACK APPEARS BELOW THE FORM -->
+        <section
+            id="submittedFeedback"
+            class="submitted-feedback"
+            aria-live="polite"
+        >
+            <h3>✓ Your Feedback Submission</h3>
+            <div id="submittedFeedbackContent"></div>
+        </section>
+
+    </div>
+
+    <script>
+        /* STUDENT / PARENT DETECTION */
+
+        const feedbackType = localStorage.getItem("feedbackType");
+
+        const feedbackTitle = document.getElementById("feedbackTitle");
+        const pageTitle = document.getElementById("pageTitle");
+        const formTitle = document.getElementById("formTitle");
+
+        if (feedbackType === "parent") {
+            feedbackTitle.innerText = "Parent Feedback";
+            pageTitle.innerText = "Parent Feedback";
+        } else {
+            feedbackTitle.innerText = "Student Feedback";
+            pageTitle.innerText = "Student Feedback";
+        }
+
+        formTitle.innerText = "Give Your Feedback";
+
+
+        /* BACK BUTTON */
+
+        function goBack() {
+            if (feedbackType === "parent") {
+                window.location.href = "/parent-dashboard.html";
+            } else {
+                window.location.href = "/student-dashboard.html";
+            }
+        }
+
+
+        /* CHANGE CATEGORY */
+
+        function changeCategory() {
+            const selected = document.querySelector(
+                'input[name="feedbackFor"]:checked'
+            )?.value;
+
+            const category = document.getElementById("category");
+
+            category.innerHTML = "";
+
+            if (selected === "College") {
+                category.innerHTML = `
+                    <option value="">Select College Category</option>
+                    <option value="Teaching">Teaching</option>
+                    <option value="Infrastructure">Infrastructure</option>
+                    <option value="Library">Library</option>
+                    <option value="Faculty Support">Faculty Support</option>
+                    <option value="Laboratory">Laboratory</option>
+                    <option value="Other">Other</option>
+                `;
+            } else if (selected === "Hostel") {
+                category.innerHTML = `
+                    <option value="">Select Hostel Category</option>
+                    <option value="Food">Food</option>
+                    <option value="Cleanliness">Cleanliness</option>
+                    <option value="Rooms">Rooms</option>
+                    <option value="Water Facility">Water Facility</option>
+                    <option value="Warden">Warden</option>
+                    <option value="Other">Other</option>
+                `;
+            }
+        }
+
+
+        /* STAR FEEDBACK */
+
+        function showFeedback(rating) {
+            const messages = {
+                1: "Poor – We are sorry that your experience was not satisfactory.",
+                2: "Needs Improvement – We will work on improving your experience.",
+                3: "Good – Thank you for your feedback.",
+                4: "Very Good – Thank you for your positive feedback.",
+                5: "Excellent – Thank you for your excellent feedback."
+            };
+
+            document.getElementById("autoFeedback").innerText =
+                messages[rating] || "Select a rating to see feedback";
+        }
+
+
+        /* SUBMIT FEEDBACK TO FLASK AND DATABASE */
+
+        async function submitFeedback(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const submitButton = form.querySelector(".submit-btn");
+
+            const selectedFor = document.querySelector(
+                'input[name="feedbackFor"]:checked'
+            );
+
+            const selectedRating = document.querySelector(
+                'input[name="rating"]:checked'
+            );
+
+            const feedbackFor = selectedFor?.value;
+            const category = document.getElementById("category").value;
+            const rating = selectedRating?.value;
+            const message = document.getElementById("message").value.trim();
+
+            const userType =
+                feedbackType === "parent" ? "Parent" : "Student";
+
+            const branch = (
+                localStorage.getItem("branch") ||
+                localStorage.getItem("studentBranch") ||
+                localStorage.getItem("student_branch") ||
+                localStorage.getItem("department") ||
+                localStorage.getItem("userBranch") ||
+                ""
+            ).trim().toUpperCase();
+
+            const userId =
+                localStorage.getItem("userId") ||
+                localStorage.getItem("user_id") ||
+                localStorage.getItem("rollNumber") ||
+                localStorage.getItem("roll_number") ||
+                localStorage.getItem("studentId") ||
+                localStorage.getItem("student_id") ||
+                localStorage.getItem("parentId") ||
+                localStorage.getItem("parent_id") ||
+                userType;
+
+            if (!feedbackFor || !category || !rating) {
+                alert("Please select Feedback For, Category and Rating.");
+                return;
+            }
+
+            if (!message) {
+                alert("Please enter your additional feedback.");
+                document.getElementById("message").focus();
+                return;
+            }
+
+            if (
+                feedbackFor === "College" &&
+                !["CME", "ECE", "CCP", "DPH"].includes(branch)
+            ) {
+                alert(
+                    "Your department could not be identified. " +
+                    "Please log in again. If this continues, the department " +
+                    "key saved by your login page needs to be checked."
+                );
+                return;
+            }
+
+            const payload = {
+                feedbackFor: feedbackFor,
+                category: category,
+                rating: Number(rating),
+                message: message,
+                userType: userType,
+                userId: userId,
+                branch: branch
+            };
+
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+
+            try {
+                const response = await fetch("/api/submit-feedback", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || result.status !== "success") {
+                    throw new Error(
+                        result.message || "Could not save feedback."
+                    );
+                }
+
+                /* SHOW SUCCESS ONLY AFTER DATABASE SAVE */
+
+                const automaticFeedback =
+                    document.getElementById("autoFeedback").innerText;
+
+                const card =
+                    document.getElementById("submittedFeedback");
+
+                const cardContent =
+                    document.getElementById("submittedFeedbackContent");
+
+                const safe = value =>
+                    String(value ?? "").replace(/[&<>"']/g, char => ({
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#39;"
+                    }[char]));
+
+                cardContent.innerHTML = `
+                    <div class="submitted-header">
+                        <div>
+                            <div class="submitted-user">${safe(userType)}</div>
+                            <div style="color:#666;font-size:13px;margin-top:4px;">
+                                Feedback saved successfully
+                            </div>
+                        </div>
+
+                        <span class="submitted-badge">
+                            ${feedbackFor === "Hostel" ? "🏠 Hostel" : "🏫 College"}
+                        </span>
+                    </div>
+
+                    <div class="submitted-details">
+                        <div class="submitted-detail">
+                            <span>Feedback For</span>
+                            <strong>${safe(feedbackFor)}</strong>
+                        </div>
+
+                        <div class="submitted-detail">
+                            <span>Feedback Category</span>
+                            <strong>${safe(category)}</strong>
+                        </div>
+
+                        <div class="submitted-detail">
+                            <span>Rating</span>
+                            <div class="submitted-stars">
+                                ${"★".repeat(Number(rating))}${"☆".repeat(5 - Number(rating))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="submitted-section">
+                        <h4>📝 ${safe(userType)} Feedback</h4>
+                        <div class="submitted-text">${safe(message)}</div>
+                    </div>
+
+                    <div class="submitted-section">
+                        <h4>💬 Rating Feedback</h4>
+                        <div class="submitted-text">${safe(automaticFeedback)}</div>
+                    </div>
+
+                    <p class="submitted-status">
+                        ✓ Feedback saved successfully
+                    </p>
+                `;
+
+                card.style.display = "block";
+                card.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+                form.reset();
+
+                document.getElementById("category").innerHTML =
+                    '<option value="">Select Feedback For First</option>';
+
+                document.getElementById("autoFeedback").innerText =
+                    "Select a rating to see feedback";
+
+            } catch (error) {
+                console.error("Feedback submission failed:", error);
+                alert("Feedback was not saved: " + error.message);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = "Submit Feedback";
+            }
+        }
+    </script>
+
+</body>
+</html>

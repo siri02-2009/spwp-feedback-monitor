@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: #eef6ff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #087bea, #0645c9);
+            color: white;
+            padding: 20px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: Georgia, serif;
+        }
+
+        .back-btn {
+            background: white;
+            color: #0645a5;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .profile-container {
+            width: 90%;
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        .profile-title {
+            text-align: center;
+            color: #6A0DAD;
+            margin-bottom: 25px;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+
+            box-shadow: 0 8px 25px rgba(0, 70, 180, 0.15);
+        }
+
+        .profile-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 15px 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .profile-row:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #0645a5;
+        }
+
+        .value {
+            color: #555;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h1>Student Profile</h1>
+
+        <button class="back-btn" onclick="goBack()">
+            Back
+        </button>
+
+    </div>
+
+
+    <div class="profile-container">
+
+        <h2 class="profile-title">
+            Student Details
+        </h2>
+
+        <div class="profile-card">
+
+            <div class="profile-row">
+                <span class="label">Student Name / ID</span>
+                <span class="value" id="displayStudentId">Loading...</span>
+            </div>
+
+            <div class="profile-row">
+                <span class="label">Branch</span>
+                <span class="value" id="displayBranch">Loading...</span>
+            </div>
+
+            <div class="profile-row">
+                <span class="label">College</span>
+                <span class="value">Sri Padmavathi Women's Polytechnic</span>
+            </div>
+
+            <div class="profile-row">
+                <span class="label">Year</span>
+                <span class="value">Diploma</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        window.onload = function() {
+            const studentId = localStorage.getItem("studentId") || "Not Logged In";
+            const branch = localStorage.getItem("studentBranch") || "N/A";
+
+            document.getElementById("displayStudentId").textContent = studentId;
+            document.getElementById("displayBranch").textContent = branch;
+        };
+
+        function goBack() {
+            window.location.href = "student-dashboard.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

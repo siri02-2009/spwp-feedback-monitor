@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>College Details</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4efff;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6a0dad, #4169e1);
+            color: white;
+            padding: 22px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+        }
+
+        .back-btn {
+            background: white;
+            color: #6a0dad;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 35px auto;
+        }
+
+        .college-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        .college-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .college-card h2 {
+            color: #6a0dad;
+            font-size: 27px;
+            margin-bottom: 25px;
+        }
+
+        .detail {
+            background: #f8f5ff;
+            margin: 15px 0;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .detail strong {
+            display: block;
+            color: #555;
+            margin-bottom: 7px;
+        }
+
+        .detail a {
+            color: #4169e1;
+            font-size: 17px;
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .detail a:hover {
+            text-decoration: underline;
+        }
+
+        .map-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 25px;
+            background: #6a0dad;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .map-btn:hover {
+            background: #4f0785;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            background: #6a0dad;
+            color: white;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 500px) {
+            .header {
+                padding: 18px;
+            }
+
+            .header h1 {
+                font-size: 21px;
+            }
+
+            .college-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>College Details</h1>
+
+        <button class="back-btn" onclick="goBack()">
+            ← Back
+        </button>
+    </div>
+
+    <!-- College Information -->
+    <div class="container">
+
+        <div class="college-card">
+
+            <div class="college-icon">🏫</div>
+
+            <h2>
+                Sri Padmavathi Women's Polytechnic
+            </h2>
+
+            <!-- Email -->
+            <div class="detail">
+                <strong>📧 College Email</strong>
+
+                <a href="mailto:principal.019@gmail.com">
+                    principal.019@gmail.com
+                </a>
+            </div>
+
+            <!-- Website -->
+            <div class="detail">
+                <strong>🌐 College Website</strong>
+
+               
+                     <!-- College Website -->
+<div class="detail">
+    <strong>🌐 College Website</strong>
+
+    <a
+        href="https://spwpc.tirumala.org/"
+        target="_blank"
+        rel="noopener noreferrer">
+        Visit Sri Padmavathi Women's Polytechnic Website
+    </a>
+</div>
+          
+     
+            </div>
+
+            <!-- Address -->
+            <div class="detail">
+                <strong>📍 College Address</strong>
+
+                <span>
+                    Sri Padmavathi Women's Polytechnic,
+                    Tirupati, Andhra Pradesh, India
+                </span>
+            </div>
+
+            <!-- Google Maps -->
+            <a
+                class="map-btn"
+                href="https://www.google.com/maps/search/?api=1&query=Sri+Padmavathi+Women's+Polytechnic+Tirupati+Andhra+Pradesh"
+                target="_blank"
+                rel="noopener noreferrer">
+                📍 Open College Location in Google Maps
+            </a>
+
+        </div>
+
+    </div>
+
+    <footer>
+        © 2026 Sri Padmavathi Women's Polytechnic
+    </footer>
+
+    <script>
+
+        function goBack() {
+            window.history.back();
+        }
+
+    </script>
+
+</body>
+</html>

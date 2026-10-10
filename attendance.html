@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: #eef6ff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #087bea, #0645c9);
+            color: white;
+            padding: 20px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-family: Georgia, serif;
+        }
+
+        .back-btn {
+            background: white;
+            color: #0645a5;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .title {
+            text-align: center;
+            color: #6A0DAD;
+            margin-bottom: 25px;
+        }
+
+        .attendance-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+
+            box-shadow: 0 8px 25px rgba(0, 70, 180, 0.15);
+        }
+
+        .student-name {
+            text-align: center;
+            color: #0645a5;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #0645c9;
+            color: white;
+            padding: 15px;
+        }
+
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .present {
+            color: green;
+            font-weight: bold;
+        }
+
+        .percentage {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #6A0DAD;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h1>Attendance</h1>
+
+        <button class="back-btn" onclick="goBack()">
+            Back
+        </button>
+
+    </div>
+
+
+    <div class="container">
+
+        <h2 class="title">Student Attendance</h2>
+
+        <div class="attendance-card">
+
+            <h3 class="student-name">
+                Student Name: Chandana
+            </h3>
+
+            <table>
+
+                <tr>
+                    <th>Subject</th>
+                    <th>Total Classes</th>
+                    <th>Present</th>
+                    <th>Attendance</th>
+                </tr>
+
+                <tr>
+                    <td>Java</td>
+                    <td>40</td>
+                    <td>36</td>
+                    <td class="present">90%</td>
+                </tr>
+
+                <tr>
+                    <td>DBMS</td>
+                    <td>40</td>
+                    <td>34</td>
+                    <td class="present">85%</td>
+                </tr>
+
+                <tr>
+                    <td>Computer Networks</td>
+                    <td>40</td>
+                    <td>32</td>
+                    <td class="present">80%</td>
+                </tr>
+
+                <tr>
+                    <td>Web Technology</td>
+                    <td>40</td>
+                    <td>38</td>
+                    <td class="present">95%</td>
+                </tr>
+
+            </table>
+
+            <div class="percentage">
+                Overall Attendance: 87.5%
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function goBack() {
+            window.location.href = "student-dashboard.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

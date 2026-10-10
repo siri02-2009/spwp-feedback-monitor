@@ -1,0 +1,1073 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Feedback Management</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =========================
+           BODY
+        ========================== */
+
+        body {
+
+            min-height: 100vh;
+
+            background: linear-gradient(
+                135deg,
+                #eaf6ff,
+                #c8e6ff,
+                #91c9ff
+            );
+
+            padding-bottom: 50px;
+
+            position: relative;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           BLUE WAVES
+        ========================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 120%;
+
+            height: 220px;
+
+            left: -10%;
+
+            bottom: -150px;
+
+            background: rgba(
+                30,
+                120,
+                220,
+                0.35
+            );
+
+            border-radius: 50% 50% 0 0;
+
+            transform: rotate(-3deg);
+
+            z-index: 0;
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 120%;
+
+            height: 180px;
+
+            left: -10%;
+
+            bottom: -130px;
+
+            background: rgba(
+                80,
+                170,
+                245,
+                0.35
+            );
+
+            border-radius: 50% 50% 0 0;
+
+            transform: rotate(3deg);
+
+            z-index: 0;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        .header {
+
+            width: 100%;
+
+            background: linear-gradient(
+                135deg,
+                #087bea,
+                #0645c9
+            );
+
+            color: white;
+
+            padding: 22px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            position: relative;
+
+            z-index: 2;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0, 70, 150, 0.25);
+        }
+
+
+        .header h1 {
+
+            font-size: 27px;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .header p {
+
+            margin-top: 5px;
+
+            font-size: 14px;
+
+            opacity: 0.9;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================== */
+
+        .back-btn {
+
+            background: white;
+
+            color: #0759a8;
+
+            padding: 10px 18px;
+
+            border-radius: 20px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+
+        .back-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 12px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================== */
+
+        .container {
+
+            width: 92%;
+
+            max-width: 1100px;
+
+            margin: 35px auto;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        /* =========================
+           PAGE TITLE
+        ========================== */
+
+        .page-title {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .page-title h2 {
+
+            color: #0759a8;
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .page-title p {
+
+            color: #555;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           FEEDBACK CARD
+        ========================== */
+
+        .feedback-card {
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.92
+            );
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(0, 80, 160, 0.15);
+
+            border-left: 6px solid #087bea;
+        }
+
+
+        /* =========================
+           FEEDBACK HEADER
+        ========================== */
+
+        .feedback-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+
+        .user-info {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .user-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 50%;
+
+            background: #dceeff;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 25px;
+        }
+
+
+        .user-info h3 {
+
+            color: #0759a8;
+
+            font-size: 18px;
+        }
+
+
+        .user-info p {
+
+            color: #666;
+
+            font-size: 13px;
+
+            margin-top: 3px;
+        }
+
+
+        /* =========================
+           TYPE BADGES
+        ========================== */
+
+        .badge {
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        .college {
+
+            background: #d9edff;
+
+            color: #0759a8;
+        }
+
+
+        .hostel {
+
+            background: #dff5ff;
+
+            color: #087a9e;
+        }
+
+
+        /* =========================
+           DETAILS
+        ========================== */
+
+        .details {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .detail-box {
+
+            background: #f3f9ff;
+
+            padding: 13px;
+
+            border-radius: 12px;
+
+            border: 1px solid #d5eaff;
+        }
+
+
+        .detail-box span {
+
+            display: block;
+
+            color: #777;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .detail-box strong {
+
+            color: #0759a8;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           STAR RATING
+        ========================== */
+
+        .rating {
+
+            color: #1683df;
+
+            font-size: 22px;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================
+           FEEDBACK TEXT
+        ========================== */
+
+        .feedback-section {
+
+            margin-top: 15px;
+        }
+
+
+        .feedback-section h4 {
+
+            color: #0759a8;
+
+            margin-bottom: 8px;
+
+            font-size: 15px;
+        }
+
+
+        .feedback-text {
+
+            background: #f5faff;
+
+            border: 1px solid #d8eaff;
+
+            border-radius: 12px;
+
+            padding: 15px;
+
+            color: #444;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           ADMIN RESPONSE
+        ========================== */
+
+        .response-section {
+
+            margin-top: 22px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #dcecff;
+        }
+
+
+        .response-section h4 {
+
+            color: #0759a8;
+
+            margin-bottom: 10px;
+
+            font-size: 15px;
+        }
+
+
+        textarea {
+
+            width: 100%;
+
+            min-height: 90px;
+
+            resize: vertical;
+
+            padding: 13px;
+
+            border: 1px solid #a9cff0;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            background: #fbfdff;
+        }
+
+
+        textarea:focus {
+
+            border-color: #087bea;
+
+            box-shadow:
+                0 0 7px
+                rgba(8, 123, 234, 0.25);
+        }
+
+
+        /* =========================
+           RESPONSE BUTTON
+        ========================== */
+
+        .response-btn {
+
+            margin-top: 12px;
+
+            padding: 11px 22px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                135deg,
+                #087bea,
+                #0645c9
+            );
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .response-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 12px
+                rgba(0, 80, 180, 0.25);
+        }
+
+
+        /* =========================
+           RESPONSE STATUS
+        ========================== */
+
+        .status {
+
+            display: none;
+
+            margin-top: 10px;
+
+            color: #087a45;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           NO FEEDBACK
+        ========================== */
+
+        .no-feedback {
+
+            text-align: center;
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.9
+            );
+
+            padding: 45px;
+
+            border-radius: 20px;
+
+            color: #666;
+
+            display: none;
+        }
+
+
+        .no-feedback .emoji {
+
+            font-size: 45px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 700px) {
+
+            .header {
+
+                padding: 18px 20px;
+
+                flex-direction: column;
+
+                gap: 15px;
+
+                text-align: center;
+            }
+
+
+            .details {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .container {
+
+                width: 94%;
+            }
+
+
+            .feedback-card {
+
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <div class="header">
+
+        <div>
+
+            <h1>
+                🛡️ Admin Panel
+            </h1>
+
+            <p>
+                Sri Padmavathi Women's Polytechnic
+            </p>
+
+        </div>
+
+
+        <a
+            href="admin-dashboard.html"
+            class="back-btn"
+        >
+            ← Admin Dashboard
+        </a>
+
+    </div>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <div class="container">
+
+
+        <div class="page-title">
+
+            <h2>
+                💬 Feedback Management
+            </h2>
+
+            <p>
+                View student and parent feedback
+                and provide appropriate solutions.
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================
+             FEEDBACK 1
+        ========================== -->
+
+        <div class="feedback-card">
+
+
+            <div class="feedback-header">
+
+                <div class="user-info">
+
+                    <div class="user-icon">
+                        👩‍🎓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Student
+                        </h3>
+
+                        <p>
+                            Student ID: CME2026001
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <span class="badge college">
+                    🏫 College
+                </span>
+
+            </div>
+
+
+
+            <!-- DETAILS -->
+
+            <div class="details">
+
+                <div class="detail-box">
+
+                    <span>
+                        Branch
+                    </span>
+
+                    <strong>
+                        CME
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>
+                        Feedback Category
+                    </span>
+
+                    <strong>
+                        College Facilities
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>
+                        Rating
+                    </span>
+
+                    <div class="rating">
+                        ★★★★☆
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FEEDBACK -->
+
+            <div class="feedback-section">
+
+                <h4>
+                    📝 Student Feedback
+                </h4>
+
+                <div class="feedback-text">
+
+                    The computer lab is good, but some
+                    computers are not working properly.
+                    Please check and repair them.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ADMIN RESPONSE -->
+
+            <div class="response-section">
+
+                <h4>
+                    💡 Admin Solution / Response
+                </h4>
+
+
+                <textarea
+                    id="response1"
+                    placeholder="Enter your solution or response here..."
+                ></textarea>
+
+
+                <button
+                    class="response-btn"
+                    onclick="sendResponse('response1','status1')"
+                >
+                    Send Response →
+                </button>
+
+
+                <p
+                    class="status"
+                    id="status1"
+                >
+                    ✓ Response saved successfully
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             FEEDBACK 2
+        ========================== -->
+
+        <div class="feedback-card">
+
+
+            <div class="feedback-header">
+
+                <div class="user-info">
+
+                    <div class="user-icon">
+                        👨‍👩‍👧
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Parent
+                        </h3>
+
+                        <p>
+                            Parent ID: PARENT102
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <span class="badge hostel">
+                    🏠 Hostel
+                </span>
+
+            </div>
+
+
+
+            <!-- DETAILS -->
+
+            <div class="details">
+
+                <div class="detail-box">
+
+                    <span>
+                        Student Branch
+                    </span>
+
+                    <strong>
+                        CME
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>
+                        Feedback Category
+                    </span>
+
+                    <strong>
+                        Hostel Facilities
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <span>
+                        Rating
+                    </span>
+
+                    <div class="rating">
+                        ★★★☆☆
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FEEDBACK -->
+
+            <div class="feedback-section">
+
+                <h4>
+                    📝 Parent Feedback
+                </h4>
+
+                <div class="feedback-text">
+
+                    The hostel food quality needs
+                    improvement. Please consider
+                    providing more variety in the menu.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ADMIN RESPONSE -->
+
+            <div class="response-section">
+
+                <h4>
+                    💡 Admin Solution / Response
+                </h4>
+
+
+                <textarea
+                    id="response2"
+                    placeholder="Enter your solution or response here..."
+                ></textarea>
+
+
+                <button
+                    class="response-btn"
+                    onclick="sendResponse('response2','status2')"
+                >
+                    Send Response →
+                </button>
+
+
+                <p
+                    class="status"
+                    id="status2"
+                >
+                    ✓ Response saved successfully
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             NO FEEDBACK MESSAGE
+        ========================== -->
+
+        <div class="no-feedback">
+
+            <div class="emoji">
+                📭
+            </div>
+
+            <h3>
+                No Feedback Available
+            </h3>
+
+            <p>
+                New student and parent feedback
+                will appear here.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        function sendResponse(
+            responseId,
+            statusId
+        ) {
+
+            let response =
+                document.getElementById(
+                    responseId
+                ).value.trim();
+
+
+            if (response === "") {
+
+                alert(
+                    "Please enter a solution or response."
+                );
+
+                return;
+            }
+
+
+            /*
+                Temporary frontend response.
+
+                Later your Flask + MySQL backend
+                can save this response in the database.
+            */
+
+
+            document.getElementById(
+                statusId
+            ).style.display = "block";
+
+
+            document.getElementById(
+                responseId
+            ).value = "";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

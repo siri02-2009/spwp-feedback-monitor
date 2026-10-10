@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4efff;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #6a0dad, #4169e1);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+        }
+
+        .header p {
+            margin-top: 8px;
+            font-size: 16px;
+        }
+
+        /* Logout Button */
+        .logout {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            padding: 10px 20px;
+            background: white;
+            color: #6a0dad;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            background: #eee;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            width: 90%;
+            max-width: 1100px;
+            margin: 45px auto;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            color: #6a0dad;
+            font-size: 26px;
+        }
+
+        .welcome p {
+            margin-top: 8px;
+            color: #555;
+        }
+
+        /* Cards Container */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* Individual Card Design matching Student Dashboard */
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px rgba(106, 13, 173, 0.15);
+        }
+
+        .icon {
+            font-size: 45px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            line-height: 1;
+        }
+
+        .card h3 {
+            color: #6a0dad;
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #6a0dad;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            body {
+                padding-bottom: 60px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .logout {
+                position: static;
+                display: inline-block;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Parent Dashboard</h1>
+        <p>Sri Padmavathi Women's Polytechnic</p>
+        <a href="student.html" class="logout" onclick="logout()">
+            Logout
+        </a>
+    </div>
+
+    <!-- Dashboard Main View -->
+    <div class="dashboard">
+
+        <div class="welcome">
+            <h2 id="welcomeParent">Welcome Parent 👥</h2>
+            <p>Access your ward's information and college updates</p>
+        </div>
+
+        <!-- 3-Column Cards Grid Structure -->
+        <div class="cards">
+
+            <!-- Notices -->
+            <div class="card" onclick="openNotices()">
+                <div class="icon">📢</div>
+                <h3>Notices</h3>
+                <p>View latest college notices</p>
+            </div>
+
+            <!-- Contact College -->
+            <div class="card" onclick="contactCollege()">
+                <div class="icon">💬</div>
+                <h3>Contact College</h3>
+                <p>Contact the college administration</p>
+            </div>
+            
+            <!-- Feedback -->
+            <div class="card" onclick="openFeedback()">
+                <div class="icon">⭐</div>
+                <h3>Feedback</h3>
+                <p>Submit your parent feedback</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Bar -->
+    <div class="footer">
+        &copy; 2026 Sri Padmavathi Women's Polytechnic
+    </div>
+
+    <script>
+        /* Display parent context details dynamically */
+        const studentData = JSON.parse(localStorage.getItem("studentData"));
+
+        if (studentData && studentData.name) {
+            document.getElementById("welcomeParent").textContent =
+                "Welcome Parent of " + studentData.name + " 👥";
+        }
+
+        /* Navigation Functions */
+        function openNotices() {
+            window.location.href = "notices.html?from=parent";
+        }
+
+        function contactCollege() {
+            alert("For any queries, please contact Sri Padmavathi Women's Polytechnic.");
+        }
+        function openFeedback() {
+
+       const studentData = JSON.parse(localStorage.getItem("studentData"));
+
+    localStorage.setItem("currentFeedbackUser", JSON.stringify({
+        role: "Parent",
+        name: studentData && studentData.name ? "Parent of " + studentData.name : "Anonymous Parent"
+    }));
+    
+    
+    window.location.href = "feedback.html"; 
+               }
+
+        /* Logout Utility */
+        function logout() {
+            localStorage.removeItem("studentData");
+            localStorage.removeItem("currentFeedbackUser");
+            window.location.href = "student.html";
+        }
+    </script>
+
+</body>
+</html>

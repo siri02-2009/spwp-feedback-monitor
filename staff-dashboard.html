@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f0f5ff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #087bea, #1746a2);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        main {
+            width: 92%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 40, 100, 0.1);
+        }
+
+        h2 {
+            color: #1746a2;
+            margin-bottom: 15px;
+        }
+
+        #staffInfo {
+            line-height: 1.8;
+            color: #333;
+        }
+
+        button {
+            padding: 11px 18px;
+            background: #1746a2;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        #feedbackList {
+            margin-top: 15px;
+        }
+
+        .feedback-item {
+            border: 1px solid #dbeafe;
+            border-radius: 9px;
+            padding: 15px;
+            margin-top: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .error {
+            color: #b91c1c;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>SPWP Staff Dashboard</h1>
+        <p>HOD / Hostel Admin</p>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>Staff Information</h2>
+            <div id="staffInfo">Loading staff information...</div>
+            <button onclick="logout()">Logout</button>
+        </section>
+
+        <section class="card">
+            <h2>Feedback for Your Department</h2>
+            <button onclick="loadFeedback()">View Feedback</button>
+            <div id="feedbackList">Click "View Feedback" to load feedback.</div>
+        </section>
+    </main>
+
+    <script>
+        async function loadFeedback() {
+            const list = document.getElementById("feedbackList");
+            list.textContent = "Loading feedback...";
+
+            try {
+                const response = await fetch("/api/staff-feedback");
+                const data = await response.json();
+
+                if (!response.ok) {
+                    list.textContent = data.message || "Unable to load feedback.";
+                    return;
+                }
+
+                list.replaceChildren();
+
+                if (!data.feedback || data.feedback.length === 0) {
+                    list.textContent = "No feedback found for your department.";
+                    return;
+                }
+
+                data.feedback.forEach(item => {
+                    const card = document.createElement("div");
+                    card.className = "feedback-item";
+
+                    const category = document.createElement("p");
+                    category.textContent = "Category: " + (item.category || "Not specified");
+
+                    const rating = document.createElement("p");
+                    rating.textContent = "Rating: " + (item.rating ?? "Not specified");
+
+                    const message = document.createElement("p");
+                    message.textContent = "Feedback: " + (item.message || "");
+
+                    const date = document.createElement("p");
+                    date.textContent = "Date: " + (item.created_at || "Not specified");
+
+                    card.append(category, rating, message, date);
+                    list.appendChild(card);
+                });
+            } catch (error) {
+                list.textContent = "Unable to connect to the server.";
+            }
+        }
+
+        async function loadStaffInfo() {
+            const info = document.getElementById("staffInfo");
+
+            try {
+                const response = await fetch("/api/staff-info");
+                const data = await response.json();
+
+                if (!response.ok) {
+                    info.textContent = data.message || "Unable to load staff information.";
+                    return;
+                }
+
+                info.replaceChildren();
+
+                const user = document.createElement("p");
+                user.textContent = "User ID: " + data.user_id;
+
+                const role = document.createElement("p");
+                role.textContent = "Role: " + data.role;
+
+                const branch = document.createElement("p");
+                branch.textContent = "Assigned department: " + data.branch;
+
+                info.append(user, role, branch);
+            } catch (error) {
+                info.textContent = "Unable to connect to the server.";
+            }
+        }
+
+        async function logout() {
+            window.location.href = "/staff-logout";
+        }
+
+        loadStaffInfo();
+    </script>
+</body>
+</html>

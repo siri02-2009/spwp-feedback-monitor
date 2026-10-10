@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Parent Login - Sri Padmavathi Women's Polytechnic</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* ================= BODY ================= */
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e8f6ff,
+                    #c5e8ff,
+                    #91cdf5,
+                    #62aee5
+                );
+        }
+
+
+        /* ================= WAVE AREA ================= */
+
+        .waves {
+
+            position: fixed;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 100%;
+
+            height: 60%;
+
+            overflow: hidden;
+
+            z-index: 0;
+        }
+
+
+        /* ================= COMMON WAVE ================= */
+
+        .wave {
+
+            position: absolute;
+
+            left: -10%;
+
+            width: 120%;
+
+            height: 500px;
+
+            border-radius:
+                50% 50% 0 0;
+        }
+
+
+        /* ================= LIGHT BLUE WAVE ================= */
+
+        .wave1 {
+
+            bottom: -250px;
+
+            background: #dff3ff;
+
+            transform:
+                rotate(-3deg);
+        }
+
+
+        /* ================= MEDIUM BLUE WAVE ================= */
+
+        .wave2 {
+
+            bottom: -330px;
+
+            background: #8dccf5;
+
+            transform:
+                rotate(4deg);
+        }
+
+
+        /* ================= DARK BLUE WAVE ================= */
+
+        .wave3 {
+
+            bottom: -410px;
+
+            background: #4b9cda;
+
+            transform:
+                rotate(-5deg);
+        }
+
+
+        /* ================= LOGIN BOX ================= */
+
+        .login-box {
+
+            position: relative;
+
+            z-index: 5;
+
+            width: 410px;
+
+            padding: 40px;
+
+            border-radius: 28px;
+
+            background:
+                rgba(255, 255, 255, 0.40);
+
+            backdrop-filter:
+                blur(22px);
+
+            -webkit-backdrop-filter:
+                blur(22px);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.75);
+
+            box-shadow:
+                0 25px 60px
+                rgba(0, 70, 140, 0.28);
+
+            text-align: center;
+        }
+
+
+        /* ================= COLLEGE NAME ================= */
+
+        .college-name {
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+            color: #064b87;
+
+            line-height: 1.25;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* ================= PAGE TITLE ================= */
+
+        .page-title {
+
+            font-size: 26px;
+
+            font-weight: bold;
+
+            color: #075da5;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* ================= LABEL ================= */
+
+        label {
+
+            display: block;
+
+            text-align: left;
+
+            margin-bottom: 8px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            color: #075080;
+        }
+
+
+        /* ================= INPUTS ================= */
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 14px 15px;
+
+            margin-bottom: 19px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            color: #174b70;
+
+            background:
+                rgba(255, 255, 255, 0.88);
+
+            box-shadow:
+                0 5px 15px
+                rgba(0, 90, 160, 0.08);
+        }
+
+
+        input::placeholder {
+
+            color: #7293aa;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            box-shadow:
+                0 0 0 2px #3b9de0,
+                0 5px 15px
+                rgba(0, 90, 160, 0.12);
+        }
+
+
+        /* ================= LOGIN BUTTON ================= */
+
+        button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 4px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1b91df,
+                    #0865b5,
+                    #06488e
+                );
+
+            box-shadow:
+                0 10px 25px
+                rgba(0, 85, 160, 0.30);
+
+            transition:
+                transform 0.25s,
+                box-shadow 0.25s;
+        }
+
+
+        button:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(0, 75, 150, 0.40);
+        }
+
+
+        /* ================= BACK LINK ================= */
+
+        .back {
+
+            display: inline-block;
+
+            margin-top: 21px;
+
+            color: #075da5;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        .back:hover {
+
+            color: #043e72;
+
+            text-decoration: underline;
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= LARGE BLUE WAVES ================= -->
+
+    <div class="waves">
+
+        <div class="wave wave1"></div>
+
+        <div class="wave wave2"></div>
+
+        <div class="wave wave3"></div>
+
+    </div>
+
+
+
+    <!-- ================= PARENT LOGIN ================= -->
+
+    <div class="login-box">
+
+
+        <div class="college-name">
+
+            Sri Padmavathi Women's Polytechnic
+
+        </div>
+
+
+        <div class="page-title">
+
+            Parent Login
+
+        </div>
+
+
+
+        <!-- PARENT ID -->
+
+        <label for="parentId">
+
+            Parent ID
+
+        </label>
+
+        <input
+            type="text"
+            id="parentId"
+            placeholder="Enter Parent ID"
+        >
+
+
+
+        <!-- PASSWORD -->
+
+        <label for="password">
+
+            Password
+
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+        >
+
+
+
+        <!-- BRANCH -->
+
+        <label for="branch">
+
+            Branch
+
+        </label>
+
+        <select id="branch">
+
+            <option value="">
+
+                Select Branch
+
+            </option>
+
+            <option value="CME">
+
+                CME
+
+            </option>
+
+            <option value="ECE">
+
+                ECE
+
+            </option>
+
+            <option value="CCP">
+
+                CCP
+
+            </option>
+
+            <option value="DPH">
+
+                DPH
+
+            </option>
+
+        </select>
+
+
+
+        <!-- LOGIN BUTTON -->
+
+        <button onclick="loginParent()">
+    Login
+</button>
+
+        <!-- BACK TO HOME -->
+
+        <a
+            href="index.html"
+            class="back"
+        >
+
+            ← Back to Home
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+<script>
+function loginParent() {
+    const parentId = document.getElementById('parentId').value;
+    const password = document.getElementById('password').value;
+    const branch = document.getElementById('branch').value;
+
+   if (!parentId || !password || !branch) {
+        alert("Please fill in all fields and select your daughter's branch.");
+        return;
+    }
+    fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            userId: parentId,
+            password: password,
+            branch: branch,
+            userType: 'parent'
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            window.location.href = "/parent-dashboard.html";
+        } else {
+            alert("Login Failed: " + data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+</script>
+
+    
+</body>
+
+</html>
+

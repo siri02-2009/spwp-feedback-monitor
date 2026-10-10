@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>College Notices</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef6ff;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #087bea, #0645c9);
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: Georgia, serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .notice {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 70, 180, 0.15);
+            border-left: 6px solid #0645c9;
+        }
+
+        .notice h2 {
+            color: #0645a5;
+            margin-bottom: 8px;
+        }
+
+        .notice p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .date {
+            color: #6A0DAD;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .no-notices {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            color: #777;
+            box-shadow: 0 6px 20px rgba(0, 70, 180, 0.15);
+        }
+
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 12px;
+            text-align: center;
+            background: #0645c9;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-btn:hover {
+            background: #087bea;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>College Notices 📢</h1>
+    </div>
+
+    <div class="container">
+
+        <!-- ADMIN NOTICES WILL APPEAR HERE -->
+        <div id="noticeContainer"></div>
+
+        <!-- BACK BUTTON -->
+        <button class="back-btn" onclick="goBack()">
+            ← Back to Dashboard
+        </button>
+
+    </div>
+
+
+    <script>
+
+        /* LOAD NOTICES FROM ADMIN */
+
+        function loadNotices() {
+
+            const noticeContainer =
+                document.getElementById("noticeContainer");
+
+            // Get notices added by admin
+            const notices =
+                JSON.parse(localStorage.getItem("collegeNotices")) || [];
+
+            noticeContainer.innerHTML = "";
+
+
+            if (notices.length === 0) {
+
+                noticeContainer.innerHTML = `
+                    <div class="no-notices">
+                        No notices available.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            // Display every notice
+            notices.forEach(function(notice) {
+
+                const noticeDiv =
+                    document.createElement("div");
+
+                noticeDiv.className = "notice";
+
+                noticeDiv.innerHTML = `
+
+                    <div class="date">
+                        📅 ${formatDate(notice.date)}
+                    </div>
+
+                    <h2>
+                        ${notice.title}
+                    </h2>
+
+                    <p>
+                        ${notice.description}
+                    </p>
+
+                `;
+
+                noticeContainer.appendChild(noticeDiv);
+
+            });
+
+        }
+
+
+        /* FORMAT DATE */
+
+        function formatDate(dateString) {
+
+            if (!dateString) {
+                return "";
+            }
+
+            const date = new Date(dateString);
+
+            return date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        /* BACK BUTTON */
+
+        function goBack() {
+
+            const from =
+                new URLSearchParams(window.location.search)
+                .get("from");
+
+
+            if (from === "student") {
+
+                window.location.href =
+                    "student-dashboard.html";
+
+            }
+
+            else if (from === "parent") {
+
+                window.location.href =
+                    "parent-dashboard.html";
+
+            }
+
+            else if (from === "admin") {
+
+                window.location.href =
+                    "admin-dashboard.html";
+
+            }
+
+            else {
+
+                window.location.href =
+                    "index.html";
+
+            }
+
+        }
+
+
+        /* LOAD WHEN PAGE OPENS */
+
+        loadNotices();
+
+    </script>
+
+</body>
+
+</html>
+
